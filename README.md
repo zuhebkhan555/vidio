@@ -29,7 +29,10 @@ built, so the film uses clearly-labelled placeholders. Drop real files into
 3. **Pattern** (optional) → `public/patel-bakery/pattern/` as a seamless tile.
 4. **Photos** → `heritage/founder/`, `heritage/second-generation/`, `family/today/`,
    `products/<product>/`. Short video clips work too.
-5. **Audio** → `public/patel-bakery/audio/` using the names in `src/config/audio.ts`.
+5. **Audio** (optional upgrade): the film ships with an original score and sound effects
+   (see *Sound* below). To use professional or licensed audio, drop a file with the same
+   name (any of .wav/.mp3/.m4a) into `public/patel-bakery/audio/` and it replaces the
+   bundled one.
 6. When everything is in, set `showPlaceholderLabels: false` in `src/config/film.ts`.
 
 ## ⚠ Founding-date discrepancy (unresolved on purpose)
@@ -75,6 +78,18 @@ Remotion owns the clock, so every frame renders deterministically. Framer Motion
 the easing maths: `src/motion/tokens.ts` builds the house curves with `cubicBezier`, and
 the raw curves (`CURVES.glide`, etc.) can be used as `transition={{ease: CURVES.glide}}` in
 any Framer Motion web component, e.g. on the Patel Bakery website, so web and film motion match.
+
+### Sound
+The soundtrack is **original**. Every sound is synthesised by `scripts/generate-audio.py`
+from sine waves and noise: no samples and no copyrighted music. It has:
+- a 60-second score at 96 BPM in D major, with a tanpura-style drone, santoor-like plucks,
+  warm pads and soft frame-drum percussion, following the film's sections;
+- cue-timed effects: a riser into the logo bloom, the logo shimmer, paper, flour, dough,
+  the oven door, crust crackle, whooshes on the pattern wipes, packaging and the final
+  impact, plus an oven room tone.
+
+Cue timings and volumes are in `src/config/audio.ts`. Regenerate the sounds with
+`pip install numpy scipy && python3 scripts/generate-audio.py`.
 
 ### Fonts
 Until ARKHIP is supplied, brand type uses **Oswald**, with **Cormorant Garamond** for story

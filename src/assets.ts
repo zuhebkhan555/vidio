@@ -38,7 +38,13 @@ export const resolveMediaList = (slot: string): ResolvedAsset[] =>
     path: match,
   }));
 
-export const hasAsset = (relativeToPublic: string) => AVAILABLE_ASSETS.includes(relativeToPublic);
+const AUDIO = /\.(mp3|wav|m4a|aac|ogg)$/i;
+
+/** Audio file by path without extension, e.g. "patel-bakery/audio/music" → any audio extension. */
+export const resolveAudio = (stem: string): string | null => {
+  const match = AVAILABLE_ASSETS.find((p) => AUDIO.test(p) && stripExt(p) === stem);
+  return match ? staticFile(match) : null;
+};
 
 /** The supplied logo: public/patel-bakery/logo/logo.(svg|png|webp) or any image in logo/ */
 export const LOGO = resolveMedia('logo/logo') ?? resolveMedia('logo');

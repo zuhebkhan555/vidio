@@ -14,7 +14,7 @@ scan runs before every `studio` / `render`). Any image (`.jpg .png .webp .svg`) 
 | `family/today/` | Photo of Asim Khan, Safi Khan and Zuheb Khan | Heritage |
 | `products/<name>/` | One hero photo or short video clip per product: `khova-naan`, `coconut-naan`, `warky`, `biscuits`, `buns`, `rusks`, `cakes` | Products (0:32–0:47) |
 | `bakery/` | Reserved for bakery interior / oven footage | — |
-| `audio/` | Sound files named as in `src/config/audio.ts` (e.g. `music.mp3`, `logo-reveal.mp3`, `whoosh.mp3`) | Sound design |
+| `audio/` | Original generated score + effects (`music.wav`, `whoosh.wav`, …). Drop a same-named .wav/.mp3/.m4a to replace any of them. | Sound design |
 
 Only use genuine photographs for heritage slots. Until a slot is filled, the film shows a
 clearly-labelled placeholder (turn labels off with `showPlaceholderLabels` in `src/config/film.ts`).
