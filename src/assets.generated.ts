@@ -11,5 +11,12 @@ export const AVAILABLE_ASSETS: readonly string[] = [
   "patel-bakery/audio/oven-door.wav",
   "patel-bakery/audio/packaging.wav",
   "patel-bakery/audio/paper.wav",
-  "patel-bakery/audio/whoosh.wav"
+  "patel-bakery/audio/whoosh.wav",
+  "patel-bakery/logo/emblem-brown.svg",
+  "patel-bakery/logo/emblem-gold.svg",
+  "patel-bakery/logo/emblem-white.svg",
+  "patel-bakery/logo/logo-brown.svg",
+  "patel-bakery/logo/logo-cream.svg",
+  "patel-bakery/logo/logo-gold.svg",
+  "patel-bakery/logo/logo-white.svg"
 ];

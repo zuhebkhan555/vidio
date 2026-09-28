@@ -6,8 +6,8 @@ scan runs before every `studio` / `render`). Any image (`.jpg .png .webp .svg`) 
 
 | Folder | What goes in it | Used in |
 |---|---|---|
-| `logo/` | The **supplied brand-kit logo**, ideally `logo.svg` or a transparent `logo.png`. Shown exactly as supplied, never modified. | Logo reveal, pattern, final lock-up |
-| `pattern/` | (Optional) the brand-kit repeating pattern as one seamless tile. If empty, the logo is tiled. | Opening, transitions, backgrounds |
+| `logo/` | **Official logo** (already in place), extracted from the brand kit by `npm run brand`. Don't replace it with anything else. | Logo reveal, pattern, final lock-up, product marks |
+| `pattern/` | (Optional) a seamless raster tile. If empty, the official emblem is tiled on a grid, as in the brand kit. | Opening, transitions, backgrounds |
 | `fonts/` | The **ARKHIP** font file (`.otf` / `.ttf` / `.woff2`). `fonts/fallback/` holds the stand-in font; leave it. | All brand typography |
 | `heritage/founder/` | Genuine photo of / related to Abdul Jabbar Khan | Heritage (0:12) |
 | `heritage/second-generation/` | Genuine photo of / related to Shabbir Ahmed Khan | Heritage |

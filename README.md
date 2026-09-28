@@ -13,34 +13,41 @@ npm run render:all      # all three
 npm run stills          # review stills for every beat → out/stills/
 ```
 
-## Replacing placeholders (most important step)
+## Official brand assets (in use)
 
-The Brand Kit PDF, real logo, ARKHIP font and photos were **not** available when this was
-built, so the film uses clearly-labelled placeholders. Drop real files into
-`public/patel-bakery/` and re-render. Nothing else needs to change. See
-[`public/patel-bakery/README.md`](public/patel-bakery/README.md) for the folder map.
+The film uses the **official Patel Bakery logo** from the brand kit
+(`brand/PATEL_BAKERY_LOGO_DESIGN_BRANDKIT.pdf`). The logo vectors are extracted
+path-for-path by `scripts/extract-brand-kit.py` (`npm run brand`) into:
 
-1. **Logo** → `public/patel-bakery/logo/logo.svg` (or a transparent PNG). It replaces the
-   placeholder emblem everywhere: logo reveal, repeating pattern and final lock-up. If
-   the file already contains the "PATEL BAKERY" wordmark, set `logoIncludesWordmark: true`
-   in `src/config/film.ts`.
-2. **ARKHIP font** → `public/patel-bakery/fonts/Arkhip.otf` (any .otf/.ttf/.woff2). Brand
-   kerning (-70 → `-0.07em`) is applied automatically once it's present.
-3. **Pattern** (optional) → `public/patel-bakery/pattern/` as a seamless tile.
-4. **Photos** → `heritage/founder/`, `heritage/second-generation/`, `family/today/`,
+- `public/patel-bakery/logo/*.svg`: ready-to-use logo files (full lock-up and emblem,
+  in white, cream, gold and brown)
+- `src/brand/logoArt.generated.ts`: the same paths, so the film can animate each part
+  (emblem trace, PATEL, rolling-pin banner, BAKERY & SWEETS, SINCE 1949)
+
+The repeating logo pattern is built from the official emblem, as shown in the kit.
+
+## Still to supply
+
+Drop real files into `public/patel-bakery/` and re-render. Nothing else needs to change.
+See [`public/patel-bakery/README.md`](public/patel-bakery/README.md) for the folder map.
+
+1. **ARKHIP font** → `public/patel-bakery/fonts/Arkhip.otf` (any .otf/.ttf/.woff2). It's
+   not included in the brand kit; until it arrives, supporting text uses **Montserrat**,
+   the face used in the kit document. The logo wordmark is always the official outline.
+2. **Photos** → `heritage/founder/`, `heritage/second-generation/`, `family/today/`,
    `products/<product>/`. Short video clips work too.
-5. **Audio** (optional upgrade): the film ships with an original score and sound effects
+3. **Audio** (optional upgrade): the film ships with an original score and sound effects
    (see *Sound* below). To use professional or licensed audio, drop a file with the same
    name (any of .wav/.mp3/.m4a) into `public/patel-bakery/audio/` and it replaces the
    bundled one.
-6. When everything is in, set `showPlaceholderLabels: false` in `src/config/film.ts`.
+4. When everything is in, set `showPlaceholderLabels: false` in `src/config/film.ts`.
 
-## ⚠ Founding-date discrepancy (unresolved on purpose)
+## ⚠ Founding date
 
-The business information says **1952**, but the supplied logo artwork reads **"SINCE 1949"**.
-The film **does not** show a standalone date and never alters the logo artwork. If the
-family confirms a year, set `foundingYear` and `showFoundingYear: true` in
-`src/config/film.ts` (one place).
+The official logo reads **"SINCE 1949"** and is shown exactly as supplied. Earlier business
+information said **1952**. That's unresolved, so the film adds no separate date of its
+own. If a different year is confirmed, set `foundingYear` / `showFoundingYear` in
+`src/config/film.ts`.
 
 ## Structure
 
@@ -54,14 +61,15 @@ src/
     audio.ts                 sound design cue sheet
   scenes/
     OpeningAtmosphere.tsx    0:00 darkness, pattern catching light, point of light
-    PatelLogoReveal.tsx      0:05 line-drawn emblem, blur-to-sharp, light sweep, wordmark
+    PatelLogoReveal.tsx      0:05 official emblem traced → full lock-up assembles
     HeritageSequence.tsx     0:12 aged paper, layered prints, names along a gold thread
     CraftSequence.tsx        0:22 flour → dough → baking → fresh as one object
     ProductSequence.tsx      0:32 seven hero shots, iris / wipe / flash / pattern cuts
     FamilyLegacySequence.tsx 0:47 generations rise and converge into a line of light
     FinalBrandReveal.tsx     0:55 logo, PATEL BAKERY, "Tradition. Taste. Together.", hold
     PatternTransition.tsx    the brand-pattern wipe (the film's motion signature)
-  components/                Emblem, PatternField, MediaSlot, ProductStandIn, Particles,
+  brand/Logo.tsx             official logo (emblem + lock-up), each part animatable
+  components/                PatternField, MediaSlot, ProductStandIn, Particles,
                              LightSweep, Texture (grain/paper/vignette), Type (kinetic type)
   motion/tokens.ts           shared easing curves (Framer Motion cubicBezier) + tween helpers
   hooks/useLayout.ts         orientation-aware sizing so scenes re-compose per aspect ratio
@@ -92,8 +100,8 @@ Cue timings and volumes are in `src/config/audio.ts`. Regenerate the sounds with
 `pip install numpy scipy && python3 scripts/generate-audio.py`.
 
 ### Fonts
-Until ARKHIP is supplied, brand type uses **Oswald**, with **Cormorant Garamond** for story
-lines. Both are SIL OFL-licensed and bundled in `public/patel-bakery/fonts/fallback/`.
+Until ARKHIP is supplied, supporting type uses **Montserrat**, with **Cormorant Garamond**
+for story lines. Both are SIL OFL-licensed and bundled in `public/patel-bakery/fonts/fallback/`.
 
 ### Rendering notes
 Remotion downloads its own headless Chrome on the first render. To use an existing browser:

@@ -5,7 +5,7 @@ import {COPY, FAMILY, FILM} from '../config/film';
 import {Grain, Paper} from '../components/Texture';
 import {MediaSlot} from '../components/MediaSlot';
 import {PatternField} from '../components/PatternField';
-import {MaskLine, Words, brandType, labelType, storyType} from '../components/Type';
+import {MaskLine, Words, brandType, fitSize, labelType, storyType} from '../components/Type';
 import {useLayout} from '../hooks/useLayout';
 import {tw} from '../motion/tokens';
 
@@ -36,7 +36,9 @@ export const HeritageSequence: React.FC = () => {
     {slot: 'family/today', label: `Photo — ${FAMILY.current.join(', ')}`, at: B.today - 8, x: -0.12, y: 0.2, r: -1.5},
   ];
 
-  const textSize = px(isPortrait ? 96 : isLandscape ? 92 : 60);
+  const colW = isPortrait ? L.width - px(150) : isLandscape ? L.width * 0.44 - px(140) : L.width * 0.52 - px(100);
+  const longestLine = [FAMILY.founder, FAMILY.second].flatMap(splitName).reduce((a, b) => (b.length > a.length ? b : a), '');
+  const textSize = fitSize(longestLine, colW, px(isPortrait ? 96 : 88));
   const threadP = tw(frame, B.founder, B.today + 40, 0, 1, 'drift');
 
   return (

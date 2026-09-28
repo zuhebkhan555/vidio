@@ -5,10 +5,10 @@ import {ARKHIP_FONT} from './assets';
 const FALLBACK_DIR = 'patel-bakery/fonts/fallback/';
 
 const faces: Array<{family: string; file: string; weight: string; style?: string}> = [
-  {family: BRAND.fonts.brandFallback, file: 'oswald-latin-300-normal.woff2', weight: '300'},
-  {family: BRAND.fonts.brandFallback, file: 'oswald-latin-400-normal.woff2', weight: '400'},
-  {family: BRAND.fonts.brandFallback, file: 'oswald-latin-500-normal.woff2', weight: '500'},
-  {family: BRAND.fonts.brandFallback, file: 'oswald-latin-600-normal.woff2', weight: '600'},
+  {family: BRAND.fonts.brandFallback, file: 'montserrat-latin-700-normal.woff2', weight: '700'},
+  {family: BRAND.fonts.brandFallback, file: 'montserrat-latin-400-normal.woff2', weight: '400'},
+  {family: BRAND.fonts.brandFallback, file: 'montserrat-latin-500-normal.woff2', weight: '500'},
+  {family: BRAND.fonts.brandFallback, file: 'montserrat-latin-600-normal.woff2', weight: '600'},
   {family: BRAND.fonts.story, file: 'cormorant-garamond-latin-400-normal.woff2', weight: '400'},
   {family: BRAND.fonts.story, file: 'cormorant-garamond-latin-500-normal.woff2', weight: '500'},
   {family: BRAND.fonts.story, file: 'cormorant-garamond-latin-400-italic.woff2', weight: '400', style: 'italic'},

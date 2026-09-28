@@ -5,7 +5,7 @@ import {COPY, FAMILY} from '../config/film';
 import {BrownStage} from '../components/Texture';
 import {PatternField} from '../components/PatternField';
 import {Particles} from '../components/Particles';
-import {Hairline, Letters, Tracking, brandType, labelType} from '../components/Type';
+import {Hairline, Letters, Tracking, brandType, fitSize, labelType} from '../components/Type';
 import {useLayout} from '../hooks/useLayout';
 import {tw} from '../motion/tokens';
 
@@ -18,7 +18,7 @@ const C = BRAND.colors;
  */
 export const FamilyLegacySequence: React.FC = () => {
   const frame = useCurrentFrame();
-  const {px, isPortrait} = useLayout();
+  const {px, width, isPortrait} = useLayout();
 
   const fadeIn = tw(frame, 0, 18);
   const appear = [4, 46, 90];
@@ -51,7 +51,8 @@ export const FamilyLegacySequence: React.FC = () => {
           const y = rel * G * (1 - conv);
           const scale = (1 - Math.min(1, past) * 0.32 - Math.max(0, past - 1) * 0.1) * (1 - conv * 0.6);
           const op = (1 - Math.min(1, past) * 0.45 - Math.max(0, past - 1) * 0.2) * (1 - conv);
-          const size = px(isPortrait ? (i === 2 ? 92 : 104) : i === 2 ? 92 : 110);
+          const longest = g.lines.reduce((a, b) => (b.length > a.length ? b : a), '');
+          const size = fitSize(longest, width * 0.86, px(i === 2 ? 84 : 100));
           return (
             <div
               key={g.numeral}
@@ -87,7 +88,7 @@ export const FamilyLegacySequence: React.FC = () => {
             textAlign: 'center',
           }}
         >
-          <Letters frame={frame} at={A} text={COPY.familyStatementA.toUpperCase()} stagger={2} dur={26} style={brandType(px(isPortrait ? 80 : 88), {color: C.cream, whiteSpace: 'nowrap'})} />
+          <Letters frame={frame} at={A} text={COPY.familyStatementA.toUpperCase()} stagger={2} dur={26} style={brandType(fitSize(COPY.familyStatementA, width * 0.86, px(80)), {color: C.cream, whiteSpace: 'nowrap'})} />
         </div>
         <div style={{position: 'absolute', top: '50%', marginTop: px(40), textAlign: 'center', maxWidth: '92%'}}>
           <Letters
@@ -96,7 +97,7 @@ export const FamilyLegacySequence: React.FC = () => {
             text={COPY.familyStatementB.toUpperCase()}
             stagger={2}
             dur={28}
-            style={brandType(px(isPortrait ? 80 : 104), {color: C.gold, whiteSpace: isPortrait ? 'normal' : 'nowrap'})}
+            style={brandType(fitSize(COPY.familyStatementB, width * 0.9, px(96)), {color: C.gold, whiteSpace: 'nowrap'})}
           />
         </div>
       </AbsoluteFill>

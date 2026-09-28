@@ -2,7 +2,7 @@
   "name": "patel-bakery-intro",
   "version": "1.0.0",
   "private": true,
-  "description": "Patel Bakery & Sweets — 60-second cinematic brand intro (Remotion)",
+  "description": "Patel Bakery & Sweets \u2014 60-second cinematic brand intro (Remotion)",
   "scripts": {
     "assets": "node scripts/scan-assets.mjs",
     "prestudio": "npm run assets",
@@ -13,11 +13,12 @@
     "render:square": "npm run assets && remotion render PatelBakeryIntro60-Square out/patel-bakery-intro-1x1.mp4",
     "render:all": "npm run render && npm run render:vertical && npm run render:square",
     "stills": "npm run assets && node scripts/render-stills.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "brand": "python3 scripts/extract-brand-kit.py"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",
-    "@fontsource/oswald": "^5.3.0",
+    "@fontsource/montserrat": "^5.3.0",
     "@remotion/cli": "^4.0.529",
     "framer-motion": "^13.4.4",
     "react": "^19.3.0",

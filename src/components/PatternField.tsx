@@ -1,9 +1,9 @@
 import React, {useId} from 'react';
 import {AbsoluteFill, useCurrentFrame} from 'remotion';
 import {BRAND} from '../config/brand';
-import {LOGO, PATTERN_TILE} from '../assets';
+import {PATTERN_TILE} from '../assets';
 import {useLayout} from '../hooks/useLayout';
-import {PlaceholderMark} from './Emblem';
+import {EmblemPath} from '../brand/Logo';
 
 type Props = {
   opacity?: number;
@@ -26,8 +26,9 @@ type Props = {
 };
 
 /**
- * The Patel Bakery repeating logo pattern — the film's recurring motion signature.
- * Source priority: dedicated brand-kit pattern tile → supplied logo tiled → placeholder mark.
+ * The Patel Bakery repeating logo pattern (as in the brand kit: the official emblem on a
+ * regular grid) — the film's recurring motion signature.
+ * An optional raster tile in public/patel-bakery/pattern/ overrides it.
  */
 export const PatternField: React.FC<Props> = ({
   opacity = 0.12,
@@ -61,14 +62,6 @@ export const PatternField: React.FC<Props> = ({
   }
   const maskImage = masks.length ? masks.join(', ') : undefined;
 
-  const mark = (x: number, y: number, s: number) => {
-    if (LOGO) return <image href={LOGO.src} x={x - s / 2} y={y - s / 2} width={s} height={s} opacity={1} />;
-    return (
-      <g transform={`translate(${x - s / 2} ${y - s / 2}) scale(${s / 400})`}>
-        <PlaceholderMark color={color} />
-      </g>
-    );
-  };
 
   return (
     <AbsoluteFill
@@ -95,12 +88,7 @@ export const PatternField: React.FC<Props> = ({
             {PATTERN_TILE ? (
               <image href={PATTERN_TILE.src} x={0} y={0} width={T} height={T} preserveAspectRatio="xMidYMid slice" />
             ) : (
-              <>
-                {mark(T * 0.25, T * 0.25, T * 0.34)}
-                {mark(T * 0.75, T * 0.75, T * 0.34)}
-                <circle cx={T * 0.75} cy={T * 0.25} r={T * 0.012} fill={color} />
-                <circle cx={T * 0.25} cy={T * 0.75} r={T * 0.012} fill={color} />
-              </>
+              <EmblemPath x={T / 2} y={T / 2} size={T * 0.8} color={color} />
             )}
           </pattern>
         </defs>

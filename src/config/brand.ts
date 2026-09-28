@@ -24,24 +24,25 @@ export const BRAND = {
 
   fonts: {
     /**
-     * ARKHIP is the brand typeface. Drop the font file into
+     * ARKHIP is the brand typeface (the logo wordmark itself is used as official outlines).
+     * Montserrat — the face used in the brand-kit document — stands in until the ARKHIP
+     * font file is supplied. Drop the font file into
      * public/patel-bakery/fonts/ (e.g. Arkhip.otf / Arkhip.ttf / Arkhip.woff2)
-     * and it is picked up automatically. Until then a condensed fallback is used.
+     * and it is picked up automatically.
      */
     brand: 'Arkhip',
-    brandFallback: 'PB Oswald',
+    brandFallback: 'PB Montserrat',
     /** Editorial serif used for story lines (supporting face, not part of the logo) */
     story: 'PB Cormorant',
   },
 
   /**
    * Brand kit kerning: -70 (Illustrator units = 1/1000 em) → -0.07em.
-   * Applied to the brand wordmark when ARKHIP is loaded. The fallback face is
-   * already condensed, so it gets a lighter value to stay legible.
+   * Applied when ARKHIP is loaded; Montserrat gets a lighter value to stay legible.
    */
   kerning: {
     arkhip: '-0.07em',
-    fallback: '-0.01em',
+    fallback: '-0.02em',
   },
 } as const;
 

@@ -46,9 +46,6 @@ export const resolveAudio = (stem: string): string | null => {
   return match ? staticFile(match) : null;
 };
 
-/** The supplied logo: public/patel-bakery/logo/logo.(svg|png|webp) or any image in logo/ */
-export const LOGO = resolveMedia('logo/logo') ?? resolveMedia('logo');
-
 /** Optional dedicated pattern tile from the brand kit: public/patel-bakery/pattern/… */
 export const PATTERN_TILE = resolveMedia('pattern');
 

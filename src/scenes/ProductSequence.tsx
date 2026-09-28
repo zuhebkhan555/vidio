@@ -6,7 +6,8 @@ import {MediaSlot} from '../components/MediaSlot';
 import {Particles} from '../components/Particles';
 import {LightSweep} from '../components/LightSweep';
 import {ProductKind, ProductStandIn, Steam} from '../components/ProductStandIn';
-import {Hairline, Letters, brandType, labelType} from '../components/Type';
+import {Hairline, Letters, brandType, fitSize, labelType} from '../components/Type';
+import {EmblemArt} from '../brand/Logo';
 import {useLayout} from '../hooks/useLayout';
 import {tw} from '../motion/tokens';
 
@@ -88,7 +89,7 @@ const ProductShot: React.FC<{index: number; step: number; entry: Entry; last: bo
     </div>
   );
 
-  const nameSize = Math.min(px(isPortrait ? 150 : 170), (width * (isPortrait ? 0.86 : 0.5)) / (p.name.length * 0.48));
+  const nameSize = fitSize(p.name, width * (isPortrait || isSquare ? 0.84 : 0.46), px(isPortrait ? 140 : 150));
 
   return (
     <AbsoluteFill style={{clipPath, opacity}}>
@@ -127,6 +128,9 @@ const ProductShot: React.FC<{index: number; step: number; entry: Entry; last: bo
         <div style={{display: 'flex', alignItems: 'center', gap: px(18), marginBottom: px(22)}}>
           <span style={labelType(px(22), {color: C.gold, letterSpacing: '0.2em', opacity: settle})}>{String(index + 1).padStart(2, '0')}</span>
           <Hairline progress={tw(frame, 6, 34, 0, 1, 'reveal')} width={px(120)} color={C.gold} />
+          <div style={{opacity: settle * 0.9}}>
+            <EmblemArt width={px(34)} color={C.gold} />
+          </div>
           <span style={labelType(px(18), {color: C.goldLight, opacity: settle * 0.8})}>Patel Bakery</span>
         </div>
         <Letters frame={frame} at={4} text={p.name.toUpperCase()} stagger={2} dur={20} rise={0.45} style={brandType(nameSize, {color: C.cream, whiteSpace: 'nowrap'})} />

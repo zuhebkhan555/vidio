@@ -88,13 +88,19 @@ export const Tracking: React.FC<Base & {text: string; from?: number; to?: number
   );
 };
 
+/** Average uppercase advance of the brand face, in em — used to fit text to a width. */
+export const CAP_WIDTH = 0.74;
+
+/** Largest font size (≤ max) at which `text` fits in `maxWidth`. */
+export const fitSize = (text: string, maxWidth: number, max: number) => Math.min(max, maxWidth / (text.length * CAP_WIDTH));
+
 export const brandType = (size: number, extra?: React.CSSProperties): React.CSSProperties => ({
   fontFamily: BRAND_FONT,
   fontSize: size,
-  lineHeight: 0.95,
+  lineHeight: 1.02,
   letterSpacing: BRAND_KERNING,
   textTransform: 'uppercase',
-  fontWeight: 500,
+  fontWeight: 600,
   ...extra,
 });
 

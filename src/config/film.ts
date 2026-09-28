@@ -15,20 +15,13 @@ export const FILM = {
   showPlaceholderLabels: true,
 
   /**
-   * FOUNDING DATE — deliberately NOT shown by default.
-   * The business info says 1952, but the supplied logo artwork reads "SINCE 1949".
-   * This discrepancy has not been resolved, so the film avoids a standalone date.
-   * If the family confirms a year, set it here and flip `showFoundingYear` to true.
-   * (The supplied logo artwork itself is never modified.)
+   * FOUNDING DATE — no separate date is shown by default.
+   * The official logo artwork reads "SINCE 1949" and is shown exactly as supplied.
+   * Earlier business info said 1952; that discrepancy is unresolved, so the film adds
+   * no date of its own. Set a confirmed year here and flip `showFoundingYear` to use it.
    */
   foundingYear: '1952',
   showFoundingYear: false,
-
-  /**
-   * Set to true if the supplied logo file already contains the "PATEL BAKERY"
-   * wordmark, so the film doesn't typeset the name a second time next to it.
-   */
-  logoIncludesWordmark: false,
 } as const;
 
 export const FORMATS = {

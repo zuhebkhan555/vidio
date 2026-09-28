@@ -6,7 +6,7 @@ import {BrownStage} from '../components/Texture';
 import {Particles} from '../components/Particles';
 import {LightSweep} from '../components/LightSweep';
 import {ProductStandIn, Steam} from '../components/ProductStandIn';
-import {brandType, labelType} from '../components/Type';
+import {brandType, fitSize, labelType} from '../components/Type';
 import {useLayout} from '../hooks/useLayout';
 import {envelope, tw} from '../motion/tokens';
 
@@ -91,7 +91,7 @@ const CraftWord: React.FC<{word: string; index: number; frame: number; width: nu
   const inP = tw(frame, start, start + 26, 0, 1, 'reveal');
   const outP = index === 3 ? 0 : tw(frame, end - 16, end, 0, 1, 'exit');
   const fillP = tw(frame, start + 10, start + 50, 0, 1, 'drift');
-  const size = Math.min(px(300), (width * 0.9) / (word.length * 0.5));
+  const size = fitSize(word, width * 0.88, px(280));
   const track = 0.3 - inP * 0.3 + outP * 0.2;
   const base = brandType(size, {letterSpacing: `${track}em`, whiteSpace: 'nowrap', lineHeight: 1});
 
